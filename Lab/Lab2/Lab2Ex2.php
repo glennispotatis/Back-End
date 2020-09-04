@@ -58,7 +58,6 @@
     function escapeVelocity($mass, $diameter)
     {
         global $G;
-        // return (sqrt(2*$G*($mass * (10**24)) / (($diameter / 1000) / 2));
         return round(sqrt(2 * $G * ($mass * (10 ** 24)) / (($diameter * 1000) / 2)) / 10 ** 3, 2);
     };
 ?>
