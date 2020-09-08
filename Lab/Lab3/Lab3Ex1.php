@@ -97,16 +97,21 @@
   // Use a for loop and switch statements to populate the arrays with the correct animals names
   echo "-----------------<br>";
   echo "Animals based on habitat type : <br>";
-  switch($data){
-    case "Aquatic";
-      echo $data;
-      break;
-    case "Amphibian";
-      echo $data;
-      break;
-    case "Terrestrial";
-      echo $data;
-      break;
+  for ($idx = 0; $idx < $lengthArray; $idx++) {
+    switch ($data) {
+      case $data[$idx][3] == "Aquatic";
+        echo "Aquatic: " .$data[$idx][1];
+        echo "<br>";
+        break;
+      case $data[$idx][3] == "Amphibian";
+        echo "Amphibian: " .$data[$idx][1];
+        echo "<br>";
+        break;
+      case $data[$idx][3] == "Terrestrial";
+        echo "Terrestrial: " .$data[$idx][1];
+        echo "<br>";
+        break;
+    }
   }
 
 
