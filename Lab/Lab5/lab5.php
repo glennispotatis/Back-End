@@ -11,20 +11,23 @@
     <label>Select File: </label> <input type="file" name="filename" size="10">
     <input type="submit" value="Upload">
     </form>
+    
     <?php 
     if ($_FILES){
-        echo "Uploaded file successfully!";
+        echo "Uploaded file successfully! <br>";
         $name = $_FILES['filename']['name'];
         move_uploaded_file($_FILES['filename']['tmp_name'], '$name');
     }
-    
+    echo "<pre>";
     $fh = fopen($name, 'r');
 
-    while(!feof($name)){
+    while(!feof($fh)){
         $line = fgets($fh);
-        $array = explode(';', $line);
-        echo $line. "<br>";
+        print_r(explode(';', $line));
     }
+
+    fclose($fh);
+    echo "</pre>";
     ?>
 </body>
 </html>
