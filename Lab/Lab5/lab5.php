@@ -11,7 +11,7 @@
     <label>Select File: </label> <input type="file" name="filename" size="10">
     <input type="submit" value="Upload">
     </form>
-    
+
     <?php 
     if ($_FILES){
         echo "Uploaded file successfully! <br>";
@@ -20,9 +20,20 @@
     }
     echo "<pre>";
     $fh = fopen($name, 'r');
+    print_r($_FILES);
 
     while(!feof($fh)){
         $line = fgets($fh);
+
+        $firstLineExtracted == FALSE;
+        if($firstLineExtracted == FALSE){
+            $keysArray = explode(';', $line);
+            $firstLineExtracted = TRUE;
+            continue;
+        }
+
+        
+        
         print_r(explode(';', $line));
     }
 
