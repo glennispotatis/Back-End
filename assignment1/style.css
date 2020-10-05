@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px 1em;
+    overflow: hidden;
+    background-color: #333333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+nav ul>li {
+    float: left;
+}
+
+nav ul>li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: grey;
+}
+
+#active {
+    background-color: darkgrey;
+}
+
+#myNameInNav:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+section{
+    margin: 75px 18px;
+}
+pre {
+    margin: 0 2em;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+th {
+    text-align: left;
+}
