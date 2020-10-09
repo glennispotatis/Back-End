@@ -1,3 +1,4 @@
+<?php include "functions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,8 +30,7 @@
 
 
     <?php
-
-    if ($_FILES) {
+    if($_FILES){
         echo "File uploaded successfully!<br>";
         $name = $_FILES['filename']['name'];
         move_uploaded_file($_FILES['filename']['tmp_name'], $name);
@@ -39,7 +39,7 @@
 
         $fileName = $name;
         echo "File name is " . $fileName . "<br><br>";
-
+        
         // call function to read from file and return arrays
         $dataArrays = readFromFile($fileName);
         $headersArray = $dataArrays['keysArray'];
@@ -47,83 +47,10 @@
 
 
         // call function to create associative array
-        $resArray = createAssocArray($headersArray, $valuesArray);
-
+        $resArray = createAssocArray($headersArray,$valuesArray);
+        
         // create table to display content of associative array
         createTable($resArray);
-    }
-
-    function readFromFile($fileName)
-    {
-
-        $fh = fopen($fileName, 'r')
-            or die('Failed! Could not open file!');
-
-        $idx = 0;
-        $firstLineExtracted == FALSE;
-        while (!feof($fh)) {
-            $line = fgets($fh); // read line
-
-            if ($firstLineExtracted == FALSE) {
-                // extract first line as keys
-                $keysArray = explode(';', $line);
-                $firstLineExtracted = TRUE;
-                continue;
-            }
-
-            $lineArray = explode(';', $line);
-            if (is_null($lineArray[1])) {
-                // check if entry in array is null.
-            } else {
-                $valueArray[$idx] = $lineArray;
-                $idx++;
-            }
-        }
-
-        fclose($fh);
-
-        return array('keysArray' => $keysArray, 'valuesArray' => $valueArray);
-    }
-
-    function createAssocArray($headersArray, $valuesArray)
-    {
-        // create an associative Array given headers and Values
-        foreach ($valuesArray as $item => $value) {
-            //print_r($item);print_r($value);echo "<br>";
-            $idx = 0;
-            foreach ($headersArray as $key) {
-                $resArray[$item][$key] = $value[$idx];
-                $idx++;
-            }
-        }
-
-        return $resArray;
-    }
-
-    function createTable($resArray)
-    {
-        echo "<table>";
-
-        foreach ($resArray as $item) {
-
-            echo "<tr>";
-
-            if ($isFirstRow == FALSE) {
-
-                foreach ($item as $key => $value) {
-                    echo "<th> $key </th>";
-                }
-                $isFirstRow = TRUE;
-            } else {
-
-                foreach ($item as $key => $value) {
-                    echo "<td> $value </td>";
-                }
-            }
-
-            echo "</tr>";
-        }
-        echo "</table>";
     }
     ?>
 </body>

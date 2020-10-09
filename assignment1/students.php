@@ -1,11 +1,14 @@
+<?php include "functions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Assignment 1 - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <nav>
         <ul>
@@ -17,7 +20,17 @@
     </nav>
     <section>
         <h1>Home</h1>
+        <?php
+        if(file_exists($fileName)){
+            echo "File exists";
+        }
+        //print_r($valuesArray);
+        if ($_FILES) {
+            
+        }
+        ?>
     </section>
-    
+
 </body>
+
 </html>
