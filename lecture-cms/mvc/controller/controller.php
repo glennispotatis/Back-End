@@ -11,7 +11,7 @@ class Controller{
             include 'view/booklist.php';
         }else{
             $book = $this->model->getBook($_GET['book']);
-            include 'view_viewbook.php';
+            include 'view/viewbook.php';
         }
     }
 }
