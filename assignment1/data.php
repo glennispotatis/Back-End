@@ -1,4 +1,7 @@
-<?php include "functions.php"; ?>
+<?php 
+require_once "functions.php";
+require_once "classes/studentClass.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Assignment 1 - Data</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -30,27 +33,42 @@
 
 
     <?php
-    if($_FILES){
-        echo "File uploaded successfully!<br>";
-        $name = $_FILES['filename']['name'];
-        move_uploaded_file($_FILES['filename']['tmp_name'], $name);
-        echo "<pre>";
-        print_r($_FILES);
+    if(isset($_POST['submit'])){
+        $ifFileName = $_FILES['file']['name'];
+        $fileTmpName = $_FILES['file']['tmp_name'];
+        $fileError = $_FILES['file']['error'];
 
-        $fileName = $name;
-        echo "File name is " . $fileName . "<br><br>";
-        
-        // call function to read from file and return arrays
-        $dataArrays = readFromFile($fileName);
-        $headersArray = $dataArrays['keysArray'];
-        $valuesArray = $dataArrays['valuesArray'];
+        if($fileError === 0){
+            $fileDestination = 'uploads/' . $fileName;
+            move_uploaded_file($fileTmpName, $fileDestination);
 
+            echo "File uploaded successfully!<br>";
 
-        // call function to create associative array
-        $resArray = createAssocArray($headersArray,$valuesArray);
-        
-        // create table to display content of associative array
-        createTable($resArray);
+            $dataArrays = readFromFile($fileDestination);
+            $headersArray = $dataArrays['keysArray'];
+            $valuesArray = $dataArrays['valuesArray'];
+
+            $resArray = createAssocArray($headersArray,$valuesArray);
+            
+            createTable($resArray);
+
+            $dataUploaded = TRUE;
+        }else{
+            echo "No file selected!";
+        }
+
+        if($dataUploaded){
+            foreach($resultArray as $item){
+                $studentNumber = $item['Student Number'];
+                $firstName = $item['First Name'];
+                $lastName = $item['Last Name'];
+                $birthdate = $item['Birthday'];
+
+                $student = new Student($studentNumber, $firstName, $lastName, $birtday);
+
+                //Same for courses & corsetaken
+            }
+        }
     }
     ?>
 </body>
