@@ -5,8 +5,8 @@ function readFromFile($fileName){
     $fh = fopen($fileName, 'r') 
         or die ('Failed! Could not open file!');
     
+    $firstLineExtracted = FALSE;
     $idx = 0;
-    $firstLineExtracted == FALSE;
     while (!feof($fh)){
     $line = fgets($fh); // read line
         
@@ -40,43 +40,97 @@ function createAssocArray($headersArray,$valuesArray){
     //print_r($item);print_r($value);echo "<br>";
     $idx = 0;
         foreach ($headersArray as $key){
-            $resArray[$item][$key] = $value[$idx];         
+            $resultArray[$item][$key] = $value[$idx];        
             $idx++;
         }
     }
-    
-    return $resArray;
-    
-} 
 
-function createTable($resArray){
-echo "<table>";
-        
-    foreach ($resArray as $item){
-        
-        echo "<tr>";
-        
-        if ($isFirstRow == FALSE){
-            
-            foreach ($item as $key => $value){
-                echo "<th> $key </th>";
-            }
-            $isFirstRow = TRUE;
-            
-        }else {
-            
-            foreach ($item as $key => $value){
-                echo "<td> $value </td>";
-            }
-        }
-        
-        echo "</tr>";
+    return $resultArray;
 
-    }    
-echo "</table>";
-    
 }
 
+function createTable($resultArray){
+    echo "<table>";
+    $isFirstRow = FALSE;
+            
+        foreach ($resultArray as $item){
+            
+            
+            
+            if ($isFirstRow == FALSE){
+                // first print headers
+                echo "<tr>";
+                foreach ($item as $key => $value){
+                    echo "<th> $key </th>";
+                }
+                echo "</tr>";
+                
+                //then print first row of values
+                echo "<tr>";
+                foreach ($item as $key => $value){
+                    echo "<td> $value </td>";
+                }
+                echo "</tr>";
+                
+                $isFirstRow = TRUE;
+                
+            }else {
+                // then print every subsequent row of values
+                echo "<tr>";
+                foreach ($item as $key => $value){
+                    echo "<td> $value </td>";
+                }
+                echo "</tr>";
+            }
+        }
 
-
-?>
+            function readThisFile($filename){
+                //echo "In readThisFile <br>";
+            
+             
+            
+                $file = fopen($filename, "r") or die("Unable to open file");
+            
+             
+            
+                //Output one line until end-of-file
+                $idx = 0;
+                while(!feof($file)){
+            
+             
+            
+                    if ($idx==0){
+                        $headersArray = fgetcsv($file);
+            
+             
+            
+                    }else{
+                        $line = fgetcsv($file);
+            
+             
+            
+                        if(!(is_null($line[1]))){
+                            $valuesArray[$idx-1] = $line;
+                        }
+            
+             
+            
+                    }
+            
+             
+            
+                    $idx++;
+                }
+            
+             
+            
+                fclose($file);
+            
+             
+            
+                return array('headersArray' => $headersArray,
+                             'valuesArray' => $valuesArray);
+            
+             
+            
+            }}
