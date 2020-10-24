@@ -33,7 +33,7 @@ include_once "classes/studentClass.php";
 
 
     <?php
-    print_r($_FILES);
+    //print_r($_FILES);
     if(isset($_POST['submit'])){
         $ifFileName = $_FILES['file']['name'];
         $fileTmpName = $_FILES['file']['tmp_name'];
@@ -55,34 +55,29 @@ include_once "classes/studentClass.php";
             $dataArrays = readFromFile($fileName);
             $headersArray = $dataArrays['keysArray'];
             $valuesArray = $dataArrays['valuesArray'];
-            print_r($headersArray);
-            print_r($valuesArray);
+            //print_r($headersArray);
+            //print_r($valuesArray);
 
 
             // call function to create associative array
             $resultArray = createAssocArray($headersArray,$valuesArray);
-            print_r($resultArray);
+            //print_r($resultArray);
             //createTable($resultArray);
 
-            
-
-            $dataUploaded = TRUE;
-            }else{
-                echo "No file selected!";
-            }
-
-        if($dataUploaded){
             foreach($resultArray as $item){
                 $studentNumber = $item['Student number'];
                 $firstName = $item['First name'];
                 $lastName = $item['Last name'];
-                $birthdate = $item['Birthday'];
+                $birthdate = $item['Birthdate'];
 
-                $student = new Student($studentNumber, $firstName, $lastName, $birtday);
+                $student = new Student($studentNumber, $firstName, $lastName, $birthdate);
+                print_r($student);
 
                 //Same for courses & coursetaken
             }
-        }
+            }else{
+                echo "No file selected!";
+            }
     }
     ?>
 </body>

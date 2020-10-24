@@ -2,10 +2,10 @@
 include_once "../functions.php";
 
 class Student{
-    protected $firstName;
-    protected $lastName;
-    protected $studentNumber;
-    protected $birthday;
+    public $studentNumber;
+    public $firstName;
+    public $lastName;
+    public $birthdate;
 
     protected $coursesTaken;
     protected $numberOfCoursesCompleted;
@@ -13,12 +13,12 @@ class Student{
     protected $GPA;
     protected $status;
 
-    function __construct($studentNumber, $firstName, $lastName, $birthday){
+    function __construct($studentNumber, $firstName, $lastName, $birthdate){
         if(empty($studentNumber) == FALSE){
             $this->studentNumber = $studentNumber;
             $this->$firstName = $firstName;
             $this->lastName = $lastName;
-            $this->birthday = $birthday;
+            $this->birthdate = $birthdate;
 
             $doesStudentExist = $this->checkStudentDatabase();
 
@@ -28,7 +28,7 @@ class Student{
         }
     }
 
-    protected function checkStudentDatabase(){
+    public function checkStudentDatabase(){
         $dataArrays = readFromFile('studentDatabase.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
@@ -42,8 +42,8 @@ class Student{
         }
     }
 
-    protected function populateStudentDatabase(){
+    public function populateStudentDatabase(){
         $itemsSaved = ("\n" . implode(';', get_object_vars($this)));
-        file_put_contents('studentsDatabase.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
+        file_put_contents('studentDB.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
     }
 }
