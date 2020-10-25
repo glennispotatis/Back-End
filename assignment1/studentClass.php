@@ -22,8 +22,8 @@ class Student{
         }
     }
 
-    protected function checkStudentDatabase(){
-        $dataArrays = readFromFile('studentDatabase.csv');
+    public function checkStudentDatabase(){
+        $dataArrays = readFromFile('studentDB.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
 
@@ -36,7 +36,7 @@ class Student{
         }
     }
 
-    protected function populateStudentDatabase(){
+    public function populateStudentDatabase(){
         $itemsSaved = ("\n" . implode(';', get_object_vars($this)));
         file_put_contents('studentDB.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
     }

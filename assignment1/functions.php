@@ -79,7 +79,7 @@ function createTable($resultArray){
                 echo "</tr>";
             }
         }
-
+}
             function readThisFile($filename){
                 //echo "In readThisFile <br>";
                 $file = fopen($filename, "r") or die("Unable to open file");
@@ -102,4 +102,4 @@ function createTable($resultArray){
 
                 return array('headersArray' => $headersArray,
                             'valuesArray' => $valuesArray);
-            }}
+            }

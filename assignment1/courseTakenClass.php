@@ -1,7 +1,7 @@
 <?php
 include_once "functions.php";
 
-class courseTaken{
+class CourseTaken{
     public $studentNumber;
     public $courseCode;
     public $courseYear;
@@ -9,6 +9,7 @@ class courseTaken{
     public $grade;
 
     function __construct($studentNumber, $courseCode, $courseYear, $courseSemester, $grade){
+        //echo "inConstructCourseT ";
         $this->studentNumber = $studentNumber;
         $this->courseCode = $courseCode;
         $this->courseYear = $courseYear;
@@ -18,12 +19,19 @@ class courseTaken{
         $doesEntryExist = $this->checkDatabase();
 
         if($doesEntryExist == FALSE){
+            //echo "inConstructDoesEntryExist ";
             $this->populateDatabase();
         }
     }
 
-    protected function checkDatabase(){
-        $dataArrays = readFromFile('studentDatabase.csv');
+    public function populateDatabase(){
+        $itemsSaved = ("\n" . implode(';', get_object_vars($this)));
+        file_put_contents('coursesTakenDB.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
+    }
+
+    public function checkDatabase(){
+        //echo "inCheckDatabaseCourseT ";
+        $dataArrays = readFromFile('coursesTakenDB.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
 
@@ -36,8 +44,5 @@ class courseTaken{
         }
     }
 
-    protected function populateDatabase(){
-        $itemsSaved = ("\n" . implode(';', get_object_vars($this)));
-        file_put_contents('courseTakenDB.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
-    }
+    
 }
