@@ -1,8 +1,8 @@
 <?php 
 include_once "functions.php";
-include_once "classes/studentClass.php";
-include_once "classes/courseClass.php";
-include_once "classes/courseTakenClass.php";
+include_once "studentClass.php";
+include_once "courseClass.php";
+include_once "courseTakenClass.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,6 +78,7 @@ include_once "classes/courseTakenClass.php";
                                     $item['Course Name'],
                                     $item['Instructor Name'],
                                     $item['Credits']);
+                                    
                 //print_r($course1);
 
                 $courseTaken1 = new CourseTaken($item['Student Number'],
@@ -85,7 +86,9 @@ include_once "classes/courseTakenClass.php";
                                                 $item['Course Year'],
                                                 $item['Course Semester'],
                                                 $item['Grade']);
-            }
+
+                //print_r($courseTaken1); 
+            } 
 
             }else{
                 echo "No file selected!";

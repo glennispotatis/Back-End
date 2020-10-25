@@ -1,11 +1,11 @@
-Student Number;Name;Surname;Birthdate;Course Code;Course Name;Course Year;Course Semester;Instructor Name;Credits;Grade
-1;Millian;Andersen;876787200;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;2
-1;Millian;Andersen;876787200;IDG1011;Front-End Web development;2020;Spring;Oivind Kolloen;10;1
-2;Elida;Lund;881625600;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;3
-2;Elida;Lund;881625600;IDG1011;Front-End Web development;2020;Spring;Oivind Kolloen;10;1
-3;Sara;Holt;818035200;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;3
-3;Sara;Holt;818035200;IDG1011;Front-End Web development;2020;Spring;Oivind Kolloen;10;2
-4;Mohamed;Abboud;960076800;EXPH0100;Examen philosophicum for Humanities and Aesthetics Disciplines;2020;Spring;Ingmar Meland;5;5
-4;Mohamed;Abboud;960076800;IDG1100;Basic Web Development;2019;Fall;Kjell Are Refsvik;7;1
-4;Mohamed;Abboud;960076800;IDG1362;Design Thinking;2019;Fall;Kjell Are Refsvik;10;4
-5;Malin;Hansen;916272000;EXPH0100;Examen philosophicum for Humanities and Aesthetics Disciplines;2020;Spring;Ingmar Meland;5;3
+Student Number;Name;Surname;Birthdate;Course Code;Course Name;Course Year;Course Semester;Instructor Name;Credits;Grade;
+1;Millian;Andersen;876787200;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;2;
+1;Millian;Andersen;876787200;IDG1011;Front-End Web development;2020;Spring;Oivind Kolloen;10;1;
+2;Elida;Lund;881625600;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;3;
+2;Elida;Lund;881625600;IDG1011;Front-End Web development;2020;Spring;Oivind Kolloen;10;1;
+3;Sara;Holt;818035200;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;3;
+3;Sara;Holt;818035200;IDG1011;Front-End Web development;2020;Spring;Oivind Kolloen;10;2;
+4;Mohamed;Abboud;960076800;EXPH0100;Examen philosophicum for Humanities and Aesthetics Disciplines;2020;Spring;Ingmar Meland;5;5;
+4;Mohamed;Abboud;960076800;IDG1100;Basic Web Development;2019;Fall;Kjell Are Refsvik;7;1;
+4;Mohamed;Abboud;960076800;IDG1362;Design Thinking;2019;Fall;Kjell Are Refsvik;10;4;
+5;Malin;Hansen;916272000;EXPH0100;Examen philosophicum for Humanities and Aesthetics Disciplines;2020;Spring;Ingmar Meland;5;3;

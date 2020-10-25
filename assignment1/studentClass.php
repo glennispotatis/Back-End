@@ -1,5 +1,5 @@
 <?php
-include_once "../functions.php";
+include_once "functions.php";
 
 class Student{
     public $studentNumber;
@@ -22,7 +22,7 @@ class Student{
         }
     }
 
-    public function checkStudentDatabase(){
+    protected function checkStudentDatabase(){
         $dataArrays = readFromFile('studentDatabase.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
@@ -36,7 +36,7 @@ class Student{
         }
     }
 
-    public function populateStudentDatabase(){
+    protected function populateStudentDatabase(){
         $itemsSaved = ("\n" . implode(';', get_object_vars($this)));
         file_put_contents('studentDB.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
     }
