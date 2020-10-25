@@ -79,6 +79,7 @@ include_once "courseTakenClass.php";
                                     $item['Instructor Name'],
                                     $item['Credits']);
                                     
+                
                 //print_r($course1);
 
                 $courseTaken1 = new CourseTaken($item['Student Number'],
