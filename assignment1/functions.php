@@ -52,54 +52,56 @@ function createTable($resultArray){
     echo "<table>";
     $isFirstRow = FALSE;
             
-        foreach ($resultArray as $item){
-            if ($isFirstRow == FALSE){
-                // first print headers
-                echo "<tr>";
-                foreach ($item as $key => $value){
-                    echo "<th> $key </th>";
-                }
-                echo "</tr>";
+    foreach ($resultArray as $item){
+        if ($isFirstRow == FALSE){
+            // first print headers
+            echo "<tr>";
+            foreach ($item as $key => $value){
+                echo "<th> $key </th>";
+            }
+            echo "</tr>";
+            
+            //then print first row of values
+            echo "<tr>";
+            foreach ($item as $key => $value){
+                echo "<td> $value </td>";
+            }
+            echo "</tr>";
                 
-                //then print first row of values
-                echo "<tr>";
-                foreach ($item as $key => $value){
-                    echo "<td> $value </td>";
-                }
-                echo "</tr>";
+            $isFirstRow = TRUE;
                 
-                $isFirstRow = TRUE;
-                
-            }else {
-                // then print every subsequent row of values
-                echo "<tr>";
-                foreach ($item as $key => $value){
-                    echo "<td> $value </td>";
-                }
-                echo "</tr>";
+        }else {
+            // then print every subsequent row of values
+            echo "<tr>";
+            foreach ($item as $key => $value){
+                echo "<td> $value </td>";
+            }
+            echo "</tr>";
+        }
+    }
+}
+
+// I did not get this function to work
+function readThisFile($filename){
+    //echo "In readThisFile <br>";
+    $file = fopen($filename, "r") or die("Unable to open file");
+
+    //Output one line until end-of-file
+    $idx = 0;
+    while(!feof($file)){
+        if ($idx==0){
+            $headersArray = fgetcsv($file);
+        }else{
+            $line = fgetcsv($file);
+            
+            if(!(is_null($line[1]))){
+                $valuesArray[$idx-1] = $line;
             }
         }
+        $idx++;
+    }
+    fclose($file);
+
+    return array('headersArray' => $headersArray,
+                'valuesArray' => $valuesArray);
 }
-            function readThisFile($filename){
-                //echo "In readThisFile <br>";
-                $file = fopen($filename, "r") or die("Unable to open file");
-
-                //Output one line until end-of-file
-                $idx = 0;
-                while(!feof($file)){
-                    if ($idx==0){
-                        $headersArray = fgetcsv($file);
-                    }else{
-                        $line = fgetcsv($file);
-            
-                        if(!(is_null($line[1]))){
-                            $valuesArray[$idx-1] = $line;
-                        }
-                    }
-                    $idx++;
-                }
-                fclose($file);
-
-                return array('headersArray' => $headersArray,
-                            'valuesArray' => $valuesArray);
-            }
