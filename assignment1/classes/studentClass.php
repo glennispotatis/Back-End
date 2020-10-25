@@ -7,16 +7,10 @@ class Student{
     public $lastName;
     public $birthdate;
 
-    protected $coursesTaken;
-    protected $numberOfCoursesCompleted;
-    protected $numberOfCoursesFailed;
-    protected $GPA;
-    protected $status;
-
     function __construct($studentNumber, $firstName, $lastName, $birthdate){
         if(empty($studentNumber) == FALSE){
             $this->studentNumber = $studentNumber;
-            $this->$firstName = $firstName;
+            $this->firstName = $firstName;
             $this->lastName = $lastName;
             $this->birthdate = $birthdate;
 
@@ -36,7 +30,7 @@ class Student{
         $resultArray = createAssocArray($headersArray,$valuesArray);
 
         foreach($resultArray as $item){
-            if($item['Student number'] === $this->studentNumber){
+            if($item['Student Number'] === $this->studentNumber){
                 return TRUE;
             }
         }

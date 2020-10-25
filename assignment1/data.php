@@ -1,6 +1,8 @@
 <?php 
 include_once "functions.php";
 include_once "classes/studentClass.php";
+include_once "classes/courseClass.php";
+include_once "classes/courseTakenClass.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,16 +67,26 @@ include_once "classes/studentClass.php";
             //createTable($resultArray);
 
             foreach($resultArray as $item){
-                $studentNumber = $item['Student number'];
-                $firstName = $item['First name'];
-                $lastName = $item['Last name'];
-                $birthdate = $item['Birthdate'];
+                $stud1 = new Student($item['Student Number'],
+                                    $item['Name'],
+                                    $item['Surname'],
+                                    $item['Birthdate']);
 
-                $student = new Student($studentNumber, $firstName, $lastName, $birthdate);
-                print_r($student);
+                //print_r($stud1);
 
-                //Same for courses & coursetaken
+                $course1 = new Course($item['Course Code'],
+                                    $item['Course Name'],
+                                    $item['Instructor Name'],
+                                    $item['Credits']);
+                //print_r($course1);
+
+                $courseTaken1 = new CourseTaken($item['Student Number'],
+                                                $item['Course Code'],
+                                                $item['Course Year'],
+                                                $item['Course Semester'],
+                                                $item['Grade']);
             }
+
             }else{
                 echo "No file selected!";
             }

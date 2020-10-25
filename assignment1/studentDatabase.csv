@@ -1,4 +1,4 @@
-Student number;First name;Last name;Birthdate;Course code;Course name;Course year;Course semester;Instructor name;Number of credits;Grade
+Student Number;Name;Surname;Birthdate;Course Code;Course Name;Course Year;Course Semester;Instructor Name;Credits;Grade
 1;Millian;Andersen;876787200;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;2
 1;Millian;Andersen;876787200;IDG1011;Front-End Web development;2020;Spring;Oivind Kolloen;10;1
 2;Elida;Lund;881625600;IDG1292;Web Coding;2019;Fall;Carlos Vicient Monllao;7;3

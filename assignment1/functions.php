@@ -15,7 +15,6 @@ function readFromFile($fileName){
             $keysArray = explode(';',$line);
             $firstLineExtracted = TRUE;
             continue;
-            
         }
             
         $lineArray = explode(';',$line);
@@ -54,9 +53,6 @@ function createTable($resultArray){
     $isFirstRow = FALSE;
             
         foreach ($resultArray as $item){
-            
-            
-            
             if ($isFirstRow == FALSE){
                 // first print headers
                 echo "<tr>";
@@ -86,51 +82,24 @@ function createTable($resultArray){
 
             function readThisFile($filename){
                 //echo "In readThisFile <br>";
-            
-             
-            
                 $file = fopen($filename, "r") or die("Unable to open file");
-            
-             
-            
+
                 //Output one line until end-of-file
                 $idx = 0;
                 while(!feof($file)){
-            
-             
-            
                     if ($idx==0){
                         $headersArray = fgetcsv($file);
-            
-             
-            
                     }else{
                         $line = fgetcsv($file);
-            
-             
             
                         if(!(is_null($line[1]))){
                             $valuesArray[$idx-1] = $line;
                         }
-            
-             
-            
                     }
-            
-             
-            
                     $idx++;
                 }
-            
-             
-            
                 fclose($file);
-            
-             
-            
+
                 return array('headersArray' => $headersArray,
-                             'valuesArray' => $valuesArray);
-            
-             
-            
+                            'valuesArray' => $valuesArray);
             }}
