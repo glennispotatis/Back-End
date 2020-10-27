@@ -10,7 +10,7 @@
     <nav>
         <ul>
             <li><a id="myNameInNav">Glenn Eirik Hansen</a></li>
-            <li><a href="students.php">Home</a></li>
+            <li><a href="students.php">Students</a></li>
             <li><a href="courses.php" id="active">Courses</a></li>
             <li><a href="data.php">Upload</a></li>
         </ul>

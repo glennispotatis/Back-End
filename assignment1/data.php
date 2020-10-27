@@ -18,7 +18,7 @@ include_once "courseTakenClass.php";
     <nav>
         <ul>
             <li><a id="myNameInNav">Glenn Eirik Hansen</a></li>
-            <li><a href="students.php">Home</a></li>
+            <li><a href="students.php">Students</a></li>
             <li><a href="courses.php">Courses</a></li>
             <li><a href="data.php" id="active">Upload</a></li>
         </ul>

@@ -1,4 +1,9 @@
-<?php include "functions.php"; ?>
+<?php 
+include_once "functions.php"; 
+include_once "studentClass.php";
+include_once "courseClass.php";
+include_once "courseTakenClass.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,21 +18,15 @@
     <nav>
         <ul>
             <li><a id="myNameInNav">Glenn Eirik Hansen</a></li>
-            <li><a href="students.php" id="active">Home</a></li>
+            <li><a href="students.php" id="active">Students</a></li>
             <li><a href="courses.php">Courses</a></li>
             <li><a href="data.php">Upload</a></li>
         </ul>
     </nav>
     <section>
-        <h1>Home</h1>
+        <h1>Students</h1>
         <?php
-        if(file_exists($fileName)){
-            echo "File exists";
-        }
-        //print_r($valuesArray);
-        if ($_FILES) {
-            
-        }
+
         ?>
     </section>
 
