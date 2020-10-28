@@ -37,8 +37,9 @@ class CourseTaken{
 
         $resultArray = createAssocArray($headersArray,$valuesArray);
 
+        // FIX THIS!!!
         foreach($resultArray as $item){
-            if($item['Student Number'] === $this->studentNumber & $item['Course Code'] === $this->courseCode & $item['Course Year'] === $this->courseYear & $item['Course Semester'] === $this->courseSemester & $item['Grade'] === $this->grade){
+            if($item['Student Number'] == $this->studentNumber){
                 return TRUE;
             }
         }

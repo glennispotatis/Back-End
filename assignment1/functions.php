@@ -82,26 +82,61 @@ function createTable($resultArray){
 }
 
 // I did not get this function to work
-function readThisFile($filename){
-    //echo "In readThisFile <br>";
-    $file = fopen($filename, "r") or die("Unable to open file");
-
-    //Output one line until end-of-file
-    $idx = 0;
-    while(!feof($file)){
-        if ($idx==0){
-            $headersArray = fgetcsv($file);
-        }else{
-            $line = fgetcsv($file);
+function bubbleSort($input){
+    //echo "inside <br>";
+    $iterations = 0;
+    $original = $input;
+        
+    
+    while(TRUE){
+        $endOfArray = FALSE;
+        $didSwap = FALSE;
+        $idx = 0;
+        while($endOfArray == FALSE){
+            echo "idx : " . $idx;
+            $x = $input[$idx];
+            $y = $input[$idx+1];
+            echo " | x: " . $x . " | y: " . $y;
             
-            if(!(is_null($line[1]))){
-                $valuesArray[$idx-1] = $line;
+            
+            if(is_null($y)){
+                echo " | y is empty | Continue <br>";
+                $endOfArray = TRUE;
+                continue;
             }
+            
+            if($y<$x){
+                $input[$idx] = $y;
+                $input[$idx+1] = $x;
+                
+                $didSwap = TRUE;
+                echo " | swap | ";
+                print_r($input);
+                echo "<br>";
+            }else{
+                echo " | no swap | ";
+                print_r($input);
+                echo "<br>";
+            }
+            
+            $idx++;
+            
+        } // second while loop
+        
+        if ($didSwap == FALSE){
+            echo "breaking 1st<br>";
+            break;
         }
-        $idx++;
-    }
-    fclose($file);
+        
+        
+        
+        $iterations++;
+        if($iterations > 5){
+            echo "breaking 1st<br>";
+            break;
+        }
+        
+            
+    } // first while loop
 
-    return array('headersArray' => $headersArray,
-                'valuesArray' => $valuesArray);
 }

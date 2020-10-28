@@ -26,7 +26,27 @@ include_once "courseTakenClass.php";
     <section>
         <h1>Students</h1>
         <?php
+        $dataArrays = readFromFile('studentDB.csv');
+        $headersArray = $dataArrays['keysArray'];
+        $valuesArray = $dataArrays['valuesArray'];
 
+        $resultArray = createAssocArray($headersArray,$valuesArray);
+        
+        $idx = 0;
+        foreach($resultArray as $item){
+            $student1 = new Student($item['Student Number'], $item['Name'], $item['Surname'], $item['Birthdate']);
+
+            $displayArray[$idx] = $student1->output();
+            $idx++;
+        }
+
+        echo "<span class=\"number-count\">Number of <strong>students</strong>: " . count($displayArray) . "</span>";
+
+        //$sortingKey = 'GPA';
+        //$sortedArray_desc = bubbleSort($displayArray, $sortingKey, 'descending');
+        createTable($displayArray);
+
+        
         ?>
     </section>
 

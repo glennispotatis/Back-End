@@ -5,13 +5,13 @@ class Course{
     public $courseCode;
     public $courseName;
     public $instructorName;
-    public $grade;
+    public $credits;
 
-    function __construct($courseCode, $courseName, $instructorName, $grade){
+    function __construct($courseCode, $courseName, $instructorName, $credits){
         $this->courseCode = $courseCode;
         $this->courseName = $courseName;
         $this->instructorName = $instructorName;
-        $this->grade = $grade;
+        $this->credits = $credits;
 
         $doesCourseExist = $this->checkCourseDatabase();
 
