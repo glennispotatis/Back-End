@@ -8,7 +8,7 @@ class Student{
     public $birthdate;
 
     //public $coursesTaken;
-    //public $numCoursesFailed;
+    //public $coursesFailed;
     //public $gpa;
     //public $status;
 
@@ -77,7 +77,17 @@ class Student{
         return $coursesTaken;
     }
 
-    
+    public function setCoursesFailed(){
+        $coursesArray = $this->retrieveCoursesTaken();
+        $coursesFailed = 0;
+
+        foreach($coursesArray as $item){
+            if($item['Student Number'] == $this->studentNumber && $item['Grade'] == 1){
+                $coursesFailed++;
+            }
+        }
+        return $coursesFailed;
+    }
 
     public function calculateGPA(){
         //$gpa = ($course_credit * $grade) / $sumCreditsTaken;
@@ -85,6 +95,7 @@ class Student{
 
     public function output(){
         $this->coursesTaken = $this->setCoursesCompleted();
+        $this->coursesFailed = $this->setCoursesFailed();
 
         $outputArray = array(
             'Student Number' => $this->studentNumber,
@@ -92,7 +103,7 @@ class Student{
             'Surname' => $this->lastName,
             'Birthdate' => $this->birthdate,
             'No. of Courses Completed' => $this->coursesTaken,
-            'No. of Courses Failed' => $this->numCoursesFailed,
+            'No. of Courses Failed' => $this->coursesFailed,
             'GPA' => $this->gpa,
             'Status' => $this->status
         );
