@@ -81,7 +81,6 @@ function createTable($resultArray){
     }
 }
 
-// I did not get this function to work
 function bubbleSort($input){
     //echo "inside <br>";
     $iterations = 0;

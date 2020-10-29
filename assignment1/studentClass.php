@@ -90,7 +90,12 @@ class Student{
     }
 
     public function calculateGPA(){
-        //$gpa = ($course_credit * $grade) / $sumCreditsTaken;
+        //$gpa = ($sumCourse_credit * $sumGrades) / $sumCreditsTaken;
+        $coursesArray = $this->retrieveCourses();
+        $coursesTakenArray = $this->retrieveCoursesTaken();
+        foreach($coursesArray as $item){
+            $courseCredit = $item['Credits'];
+        }
     }
 
     public function output(){
