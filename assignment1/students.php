@@ -31,11 +31,10 @@ include_once "courseTakenClass.php";
         $valuesArray = $dataArrays['valuesArray'];
 
         $resultArray = createAssocArray($headersArray,$valuesArray);
-        
+
         $idx = 0;
         foreach($resultArray as $item){
             $student1 = new Student($item['Student Number'], $item['Name'], $item['Surname'], $item['Birthdate']);
-
             $displayArray[$idx] = $student1->output();
             $idx++;
         }

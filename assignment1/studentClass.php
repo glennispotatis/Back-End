@@ -7,10 +7,10 @@ class Student{
     public $lastName;
     public $birthdate;
 
-    public $coursesTaken;
-    public $numCoursesFailed;
-    public $gpa;
-    public $status;
+    //public $coursesTaken;
+    //public $numCoursesFailed;
+    //public $gpa;
+    //public $status;
 
     function __construct($studentNumber, $firstName, $lastName, $birthdate){
         if(empty($studentNumber) == FALSE){
@@ -51,28 +51,9 @@ class Student{
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
         $coursesTakenArray = createAssocArray($headersArray,$valuesArray);
-
-        foreach($coursesTakenArray as $item){
-            if($item['Student Number'] == $this->studentNumber){
-                $courseTakenArr = array('Course Code' => $item['Course Code'], 
-                                        'Course Year' => $item['Course Year'], 
-                                        'Course Semester' => $item['Course Semester'], 
-                                        'Grade' => $item['Grade']
-                        );
-                        $this->setCoursesTaken($courseTakenArr);
-            }
-        }
+        return $coursesTakenArray;
+        
     }
-
-    public function setCoursesTaken($courseTakenArr){
-        if(empty($this->coursesTaken)){
-            $this->coursesTaken = array($courseTakenArr);
-        } else {
-            array_push($this->coursesTaken, $courseTakenArr);
-        }
-    }
-
-
 
     public function retrieveCourses(){
         $dataArrays = readFromFile('coursesDB.csv');
@@ -81,14 +62,30 @@ class Student{
 
         $coursesArray = createAssocArray($headersArray,$valuesArray);
 
-        
+        return $coursesArray;
     }
+
+    public function setCoursesCompleted(){
+        $coursesTakenArray = $this->retrieveCoursesTaken();
+        $coursesTaken = 0;
+
+        foreach($coursesTakenArray as $item){
+            if($item['Student Number'] == $this->studentNumber){
+                $coursesTaken++;
+            }
+        }
+        return $coursesTaken;
+    }
+
+    
 
     public function calculateGPA(){
         //$gpa = ($course_credit * $grade) / $sumCreditsTaken;
     }
 
     public function output(){
+        $this->coursesTaken = $this->setCoursesCompleted();
+
         $outputArray = array(
             'Student Number' => $this->studentNumber,
             'Name' => $this->firstName,

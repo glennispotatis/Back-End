@@ -72,7 +72,7 @@ include_once "courseTakenClass.php";
                                     $item['Surname'],
                                     $item['Birthdate']);
 
-                print_r($stud1);
+                //print_r($stud1);
 
                 $course1 = new Course($item['Course Code'],
                                     $item['Course Name'],
