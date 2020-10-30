@@ -35,6 +35,7 @@ include_once "courseTakenClass.php";
 
 
     <?php
+    //This uploads the file
     //print_r($_FILES);
     if(isset($_POST['submit'])){
         $ifFileName = $_FILES['file']['name'];
@@ -43,7 +44,6 @@ include_once "courseTakenClass.php";
         echo $ifFileName;
 
         if($_FILES){
-
             echo "File uploaded successfully!<br>";
             $name = $_FILES['filename']['name'];
             move_uploaded_file($_FILES['filename']['tmp_name'], $name);
@@ -66,7 +66,9 @@ include_once "courseTakenClass.php";
             //print_r($resultArray);
             //createTable($resultArray);
 
+            //Sends the data from the resultArray to the different classes that populates the corresponding databases
             foreach($resultArray as $item){
+                //Creates a new object of Student and adds the correct data to the database
                 $stud1 = new Student($item['Student Number'],
                                     $item['Name'],
                                     $item['Surname'],
@@ -74,6 +76,7 @@ include_once "courseTakenClass.php";
 
                 //print_r($stud1);
 
+                //Creates a new object of Course and adds the correct data to the database
                 $course1 = new Course($item['Course Code'],
                                     $item['Course Name'],
                                     $item['Instructor Name'],
@@ -82,6 +85,7 @@ include_once "courseTakenClass.php";
                 
                 //print_r($course1);
 
+                //Creates a new object of CourseTaken and adds the correct data to the database
                 $courseTaken1 = new CourseTaken($item['Student Number'],
                                                 $item['Course Code'],
                                                 $item['Course Year'],

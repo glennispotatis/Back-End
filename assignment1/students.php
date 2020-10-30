@@ -26,6 +26,7 @@ include_once "courseTakenClass.php";
     <section>
         <h1>Students</h1>
         <?php
+        //Reads the student database and creates an associative array
         $dataArrays = readFromFile('studentDB.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
@@ -33,16 +34,20 @@ include_once "courseTakenClass.php";
         $resultArray = createAssocArray($headersArray,$valuesArray);
 
         $idx = 0;
+        //Going through each entry in the student database and creates a new instance of Student class to get displayed on the screen
         foreach($resultArray as $item){
             $student1 = new Student($item['Student Number'], $item['Name'], $item['Surname'], $item['Birthdate']);
             $displayArray[$idx] = $student1->output();
             $idx++;
         }
 
+        //Displays the amount of students
         echo "<span class=\"number-count\">Number of <strong>students</strong>: " . count($displayArray) . "</span>";
 
+        //Gives the sorting key and uses the bubbleSort function to order the array accordingly
         $sortingKey = 'GPA';
         $sortedArray_desc = bubbleSort($displayArray, $sortingKey, 'descending');
+        //Creates what the user can see after the sorting has been done.
         createTable($sortedArray_desc);
         ?>
     </section>

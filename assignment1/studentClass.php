@@ -161,11 +161,13 @@ class Student{
 
     //Function that gets called in students.php, this sends the output to get displayed
     public function output(){
+        //Getting the derived properties
         $this->numCoursesTaken = $this->setCoursesCompleted();
         $this->numCoursesFailed = $this->setCoursesFailed();
         $this->gpa = $this->calculateGPA();
         $this->status = $this->getStatus();
 
+        //Sending the array to get displayed
         $outputArray = array(
             'Student Number' => $this->studentNumber,
             'Name' => $this->firstName,
