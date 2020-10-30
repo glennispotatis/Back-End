@@ -41,9 +41,9 @@ include_once "courseTakenClass.php";
 
         echo "<span class=\"number-count\">Number of <strong>students</strong>: " . count($displayArray) . "</span>";
 
-        //$sortingKey = 'GPA';
-        //$sortedArray_desc = bubbleSort($displayArray, $sortingKey, 'descending');
-        createTable($displayArray);
+        $sortingKey = 'GPA';
+        $sortedArray_desc = bubbleSort($displayArray, $sortingKey, 'descending');
+        createTable($sortedArray_desc);
 
         
         ?>

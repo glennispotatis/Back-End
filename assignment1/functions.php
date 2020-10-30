@@ -80,7 +80,7 @@ function createTable($resultArray){
         }
     }
 }
-
+/* 
 function bubbleSort($input){
     //echo "inside <br>";
     $iterations = 0;
@@ -138,4 +138,54 @@ function bubbleSort($input){
             
     } // first while loop
 
+} */
+
+function bubbleSort($input,$key,$order){
+
+    $temp = $input;
+
+    while(TRUE){
+        $endOfArray = FALSE;
+        $didSwap = FALSE;
+        $idx = 0;
+
+            do{
+                $x = $temp[$idx];
+                $y = $temp[$idx+1];
+
+                $x_param = $x[$key];
+                $y_param = $y[$key];
+
+                if(is_null($y)){
+                    $endOfArray = TRUE;
+                    continue;
+                }
+                if($order == 'descending'){
+                    if($x_param<$y_param){
+                        $temp[$idx] = $y;
+                        $temp[$idx+1] = $x;
+
+                        $didSwap = TRUE;
+                    }
+                }
+                elseif($order == 'ascending'){
+                    if($y_param<$x_param){
+                        $temp[$idx] = $y;
+                        $temp[$idx+1] = $x;
+
+                        $didSwap = TRUE;
+                    }
+                }
+                else{
+                    echo "Invalid order<br>";
+                    break;
+                }
+                $idx++;
+            }while($endOfArray == FALSE);//neste do...while loop
+
+            if ($didSwap == FALSE){
+                break;
+            }
+    }//first while loop
+    return $temp;
 }
