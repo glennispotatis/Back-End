@@ -91,6 +91,13 @@ class Student{
         return $coursesFailed;
     }
 
+    //Function that converts birthdate form unix to readable form
+    public function convertDate(){
+        $date = $this->birthdate;
+        $convertedDate = date("d/m/Y", $date);
+        return $convertedDate;
+    }
+
     //Function that creates an array with credits for the GPA function
     public function getCoursesTakenCredits(){
 
@@ -162,6 +169,7 @@ class Student{
     //Function that gets called in students.php, this sends the output to get displayed
     public function output(){
         //Getting the derived properties
+        $this->formattedDate = $this->convertDate();
         $this->numCoursesTaken = $this->setCoursesCompleted();
         $this->numCoursesFailed = $this->setCoursesFailed();
         $this->gpa = $this->calculateGPA();
@@ -172,7 +180,7 @@ class Student{
             'Student Number' => $this->studentNumber,
             'Name' => $this->firstName,
             'Surname' => $this->lastName,
-            'Birthdate' => $this->birthdate,
+            'Birthdate' => $this->formattedDate,
             'No. of Courses Completed' => $this->numCoursesTaken,
             'No. of Courses Failed' => $this->numCoursesFailed,
             'GPA' => round($this->gpa, 2),
