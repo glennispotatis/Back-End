@@ -59,9 +59,7 @@ class Student{
         $dataArrays = readFromFile('coursesDB.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
-
         $coursesArray = createAssocArray($headersArray,$valuesArray);
-
         return $coursesArray;
     }
 
