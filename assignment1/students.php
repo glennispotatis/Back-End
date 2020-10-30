@@ -44,8 +44,6 @@ include_once "courseTakenClass.php";
         $sortingKey = 'GPA';
         $sortedArray_desc = bubbleSort($displayArray, $sortingKey, 'descending');
         createTable($sortedArray_desc);
-
-        
         ?>
     </section>
 

@@ -139,11 +139,32 @@ class Student{
         }
     }
 
+    //Function that gets the status of the student
+    public function getStatus(){
+        $grade = $this->calculateGPA();
+        switch($grade){
+            case $grade < 2:
+                $value = 'Unsatisfactory';
+                break;
+            case $grade < 3:
+                $value = 'Satisfactory';
+                break;
+            case $grade < 4:
+                $value = 'Honour';
+                break;
+            case $grade <= 5:
+                $value = 'High Honour';
+                break;
+        }
+        return $value;
+    }
+
     //Function that gets called in students.php, this sends the output to get displayed
     public function output(){
         $this->numCoursesTaken = $this->setCoursesCompleted();
         $this->numCoursesFailed = $this->setCoursesFailed();
         $this->gpa = $this->calculateGPA();
+        $this->status = $this->getStatus();
 
         $outputArray = array(
             'Student Number' => $this->studentNumber,
