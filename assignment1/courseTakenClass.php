@@ -3,11 +3,11 @@ include_once "functions.php";
 
 class CourseTaken{
     //Initial properties
-    public $studentNumber;
-    public $courseCode;
-    public $courseYear;
-    public $courseSemester;
-    public $grade;
+    protected $studentNumber;
+    protected $courseCode;
+    protected $courseYear;
+    protected $courseSemester;
+    protected $grade;
 
     //The constructor sets the intial properties and checks the database for duplicate keys and then populate the database
     function __construct($studentNumber, $courseCode, $courseYear, $courseSemester, $grade){
@@ -27,13 +27,13 @@ class CourseTaken{
     }
 
     //Function that is populating the course taken database
-    public function populateDatabase(){
+    protected function populateDatabase(){
         $itemsSaved = ("\n" . implode(';', get_object_vars($this)));
         file_put_contents('coursesTakenDB.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
     }
 
     //Function that is checking the course taken database
-    public function checkDatabase(){
+    protected function checkDatabase(){
         //echo "inCheckDatabaseCourseT ";
         $dataArrays = readFromFile('coursesTakenDB.csv');
         $headersArray = $dataArrays['keysArray'];

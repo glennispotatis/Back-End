@@ -3,10 +3,10 @@ include_once "functions.php";
 
 class Student{
     //Initial properties
-    public $studentNumber;
-    public $firstName;
-    public $lastName;
-    public $birthdate;
+    protected $studentNumber;
+    protected $firstName;
+    protected $lastName;
+    protected $birthdate;
 
     //Constructor setting initial properties and checking database if empty
     function __construct($studentNumber, $firstName, $lastName, $birthdate){
@@ -25,7 +25,7 @@ class Student{
     }
 
     //Function that is checking the studentDB.csv
-    public function checkStudentDatabase(){
+    protected function checkStudentDatabase(){
         $dataArrays = readFromFile('studentDB.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
@@ -40,13 +40,13 @@ class Student{
     }
 
     //Function that populates the database
-    public function populateStudentDatabase(){
+    protected function populateStudentDatabase(){
         $itemsSaved = ("\n" . implode(';', get_object_vars($this)));
         file_put_contents('studentDB.csv', $itemsSaved, FILE_APPEND | LOCK_EX);
     }
 
     //Function that creates an assoc array of the coursesTaken Database
-    public function retrieveCoursesTaken(){
+    protected function retrieveCoursesTaken(){
         $dataArrays = readFromFile('coursesTakenDB.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
@@ -55,7 +55,7 @@ class Student{
     }
 
     //Function that creates an assoc array of the courses database
-    public function retrieveCourses(){
+    protected function retrieveCourses(){
         $dataArrays = readFromFile('coursesDB.csv');
         $headersArray = $dataArrays['keysArray'];
         $valuesArray = $dataArrays['valuesArray'];
@@ -64,7 +64,7 @@ class Student{
     }
 
     //Function that counts Courses Completed
-    public function setCoursesCompleted(){
+    protected function setCoursesCompleted(){
         $coursesTakenArray = $this->retrieveCoursesTaken();
         $coursesTaken = 0;
 
@@ -77,7 +77,7 @@ class Student{
     }
 
     //Function that counts courses failed
-    public function setCoursesFailed(){
+    protected function setCoursesFailed(){
         $coursesArray = $this->retrieveCoursesTaken();
         $coursesFailed = 0;
 
@@ -90,14 +90,14 @@ class Student{
     }
 
     //Function that converts birthdate form unix to readable form
-    public function convertDate(){
+    protected function convertDate(){
         $date = $this->birthdate;
         $convertedDate = date("d/m/Y", $date);
         return $convertedDate;
     }
 
     //Function that creates an array with credits for the GPA function
-    public function getCoursesTakenCredits(){
+    protected function getCoursesTakenCredits(){
 
         $resArray = $this->retrieveCoursesTaken();
 
@@ -120,7 +120,7 @@ class Student{
     }
 
     //Function that uses the previous function to set the course credits
-    public function getCourseCredits($courseCode){
+    protected function getCourseCredits($courseCode){
         $resArray = $this->retrieveCourses();
         foreach($resArray as $item){
             if($item['Course Code'] == $courseCode){
@@ -130,7 +130,7 @@ class Student{
     }
 
     //Function that sets the GPA for the student
-    public function calculateGPA(){
+    protected function calculateGPA(){
         $coursesTakenArray = $this->getCoursesTakenCredits();
         $creditsTot = 0;
         $creditsWeighted = 0;
@@ -145,7 +145,7 @@ class Student{
     }
 
     //Function that gets the status of the student
-    public function getStatus(){
+    protected function getStatus(){
         $grade = $this->calculateGPA();
         switch($grade){
             case $grade < 2:
