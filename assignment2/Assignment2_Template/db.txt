@@ -1,0 +1,25 @@
+CREATE DATABASE university;
+
+USE university;
+
+CREATE TABLE users(username VARCHAR(32), role INT(1), password VARCHAR(256), PRIMARY KEY(username));
+
+ALTER TABLE users ADD UNIQUE(username);
+
+CREATE TABLE students(studentid VARCHAR(11), username VARCHAR(32), name VARCHAR(32), surname VARCHAR(32), birthdate INT(32), PRIMARY KEY(studentid));
+
+ALTER TABLE students ADD UNIQUE(studentid);
+
+ALTER TABLE students ADD UNIQUE(username);
+
+CREATE TABLE employees(employeeid VARCHAR(11), username VARCHAR(32), name VARCHAR(32), surname VARCHAR(32),  PRIMARY KEY(employeeid));
+
+ALTER TABLE employees ADD UNIQUE(employeeid);
+
+ALTER TABLE employees ADD UNIQUE(username);
+
+CREATE TABLE courses(coursecode VARCHAR(11), coursename VARCHAR(32), employeeid VARCHAR(11), credits INT(2), PRIMARY KEY(coursecode));
+
+ALTER TABLE courses ADD UNIQUE(coursecode);
+
+CREATE TABLE coursesTaken(id INT(11) AUTO_INCREMENT, studentid VARCHAR(11), coursecode VARCHAR(11), year INT(4), semester VARCHAR(20), grade VARCHAR(1), PRIMARY KEY(id));
