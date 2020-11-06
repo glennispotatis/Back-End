@@ -30,7 +30,7 @@ function readThisFile($filename){
     fclose($file);
 
     return array('headersArray' => $headersArray,
-                 'valuesArray' => $valuesArray);
+                'valuesArray' => $valuesArray);
 
 }
 
@@ -71,7 +71,6 @@ function validateInput($entry){
         }else{
             echo "Data is OK!<br>";
             $isDataOK = TRUE; 
- 
         }
         
     }else{
@@ -96,12 +95,9 @@ function getTime($str){
 // HTML functions
 
 function createTable($resArray){
-echo "<table>";
-        
+    echo "<table>";
+    $isFirstRow = FALSE;
     foreach ($resArray as $item){
-        
-        
-        
         if ($isFirstRow == FALSE){
             // first print headers
             echo "<tr>";
@@ -134,8 +130,3 @@ echo "<table>";
 echo "</table>";
     
 }
-
-
-
-
-?>

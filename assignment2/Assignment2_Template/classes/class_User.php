@@ -104,8 +104,37 @@ class User extends Database {
     
     
     // Registration Methods
-    protected function updateUserPassword(){
+    public function updateUserPassword($username, $password){
         // function to update password upon registration
+        $connection = $this->connect();
+
+        //$query = "UPDATE `users` SET `password` = 'test2' WHERE `users`.`username` = 'glennis'";
+        $query1 = "UPDATE `users`";
+        $query1 .= " SET `password` = '$password'";
+        $query1 .= " WHERE `users`.`username` = '$username'";
+        //echo $query1;
+
+        $result = mysqli_query($connection, $query1);
+
+        if(!$result){
+            die('Changing password failed! ' . mysqli_error($connection));
+        }else {
+            echo "<p><b>Password updated!</b></p>";
+        }
+
+        $this->disconnect($connection);
+    }
+
+    public function checkUsername($username){
+        //Function to check the username
+        $usersArray = $this->readFromTable("users");
+        
+        foreach($usersArray as $item){
+            //Checking username in DB to username entered by the user.
+            if($item['username'] === $username){
+                return TRUE;
+            }
+        }
     }
     
     
