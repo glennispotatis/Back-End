@@ -108,10 +108,13 @@ class User extends Database {
         // function to update password upon registration
         $connection = $this->connect();
 
+        $sanUsername = $this->cleanVar($username, $connection);
+        $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+
         //$query = "UPDATE `users` SET `password` = 'test2' WHERE `users`.`username` = 'glennis'";
         $query1 = "UPDATE `users`";
-        $query1 .= " SET `password` = '$password'";
-        $query1 .= " WHERE `users`.`username` = '$username'";
+        $query1 .= " SET `password` = '$password_hashed'";
+        $query1 .= " WHERE `users`.`username` = '$sanUsername'";
         //echo $query1;
 
         $result = mysqli_query($connection, $query1);
