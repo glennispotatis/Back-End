@@ -22,7 +22,7 @@ include_once "functions.php";
     
 
     <?php
-    $showForm = TRUE;
+    $showForm = TRUE; 
 
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
