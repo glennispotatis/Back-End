@@ -92,7 +92,6 @@ include_once "functions.php";
         echo "<p>Welcome, <b>$username</b>!</p>";
         echo "<p>Please click <a href=\"login.php\">here</a> to log in to your account.</p>";
     }
-    echo "hello world";
     ?>
 </body>
 
